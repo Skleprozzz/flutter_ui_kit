@@ -20,10 +20,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AdaptiveTheme(
-      child: MaterialApp(
+    return AdaptiveTheme(
+      builder: (context, theme) => MaterialApp(
         title: 'Ui Kit Demo',
-        home: UiKitMainPage(),
+        home: const UiKitMainPage(),
+        theme: theme.materialTheme,
       ),
     );
   }

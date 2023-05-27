@@ -3,16 +3,19 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:ui_kit/theme/app_theme.dart';
-import 'package:ui_kit/theme/data/app_theme_data.dart';
 import 'package:ui_kit/ui_kit.dart';
+
+typedef AdaptiveThemeBuilder = Widget Function(
+  BuildContext context,
+  AppThemeData theme,
+);
 
 class AdaptiveTheme extends StatefulWidget {
   const AdaptiveTheme({
-    required this.child,
+    required this.builder,
     Key? key,
   }) : super(key: key);
-  final Widget child;
+  final AdaptiveThemeBuilder builder;
 
   @override
   State<AdaptiveTheme> createState() => _AdaptiveThemeState();
@@ -39,10 +42,10 @@ class _AdaptiveThemeState extends State<AdaptiveTheme> {
       final colorMode = AdaptiveTheme.colorModeOf(context);
       switch (colorMode) {
         case AppThemeColorMode.dark:
-          theme = AppThemeData.dark();
+          setState(() => theme = AppThemeData.dark());
           break;
         case AppThemeColorMode.light:
-          theme = AppThemeData.light();
+          setState(() => theme = AppThemeData.light());
           break;
       }
     };
@@ -65,7 +68,7 @@ class _AdaptiveThemeState extends State<AdaptiveTheme> {
   Widget build(BuildContext context) {
     return AppTheme(
       theme: theme,
-      child: widget.child,
+      child: widget.builder(context, theme),
     );
   }
 }

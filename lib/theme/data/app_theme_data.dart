@@ -1,7 +1,10 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:ui_kit/theme/data/border_radius/app_border_radius.dart';
 import 'package:ui_kit/theme/data/colors/app_color_scheme.dart';
 import 'package:ui_kit/theme/data/icons/app_icons.dart';
+import 'package:ui_kit/theme/data/material_theme/dark_material_theme.dart';
+import 'package:ui_kit/theme/data/material_theme/light_material_theme.dart';
 import 'package:ui_kit/theme/data/shadows/app_shadows.dart';
 import 'package:ui_kit/theme/data/spacing/app_spacing.dart';
 import 'package:ui_kit/theme/data/typography/app_typography.dart';
@@ -20,6 +23,7 @@ class AppThemeData extends Equatable {
     required this.shadows,
     required this.icons,
     required this.radius,
+    required this.materialTheme,
   });
 
   factory AppThemeData.light() => AppThemeData(
@@ -29,6 +33,7 @@ class AppThemeData extends Equatable {
         shadows: const AppShadows(),
         icons: AppIcons.regular(),
         radius: AppBorderRadius.regular(),
+        materialTheme: lightTheme,
       );
 
   factory AppThemeData.dark() => AppThemeData(
@@ -38,6 +43,7 @@ class AppThemeData extends Equatable {
         shadows: const AppShadows(),
         icons: AppIcons.regular(),
         radius: AppBorderRadius.regular(),
+        materialTheme: darkTheme,
       );
 
   final AppColorScheme colorScheme;
@@ -46,6 +52,7 @@ class AppThemeData extends Equatable {
   final AppShadows shadows;
   final AppIcons icons;
   final AppBorderRadius radius;
+  final ThemeData materialTheme;
 
   @override
   List<Object?> get props => [
