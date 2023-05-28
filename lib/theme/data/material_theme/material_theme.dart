@@ -24,6 +24,8 @@ class MaterialTheme {
   }) {
     final backgroundColor = colorScheme.background.background;
 
+    final isBrightnessLight = brightness == Brightness.light;
+
     final buttonTheme = ButtonStyle(
       elevation: MaterialStateProperty.all(0),
       shape: MaterialStateProperty.all<OutlinedBorder>(
@@ -44,9 +46,12 @@ class MaterialTheme {
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: backgroundColor,
           systemNavigationBarColor: backgroundColor,
-          systemNavigationBarIconBrightness: Brightness.light,
-          statusBarIconBrightness: Brightness.light,
-          statusBarBrightness: Brightness.dark,
+          systemNavigationBarIconBrightness:
+              isBrightnessLight ? Brightness.dark : Brightness.light,
+          statusBarIconBrightness:
+              isBrightnessLight ? Brightness.dark : Brightness.light,
+          statusBarBrightness:
+              isBrightnessLight ? Brightness.light : Brightness.dark,
         ),
         backgroundColor: backgroundColor,
         centerTitle: true,
